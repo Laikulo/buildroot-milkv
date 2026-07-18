@@ -1,0 +1,5 @@
+config BR2_PACKAGE_HOST_MILKV_BOOT_BLOBS
+	bool "host-milkv-boot-blobs"
+	default n
+	help
+	  BLOBs used to build milkv firmware objects
