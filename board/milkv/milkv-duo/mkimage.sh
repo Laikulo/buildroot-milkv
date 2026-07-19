@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+set -x
+
 IMAGES_DIR="$1"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 FW_DIR="$IMAGES_DIR/duo-firmware"
 ## Create output in images for work area
@@ -94,5 +97,4 @@ END
 
 "$HOST_DIR/bin/mkimage" -f "$IMAGES_DIR/duo-firmware/sd.its" "$IMAGES_DIR/duo-firmware/sd.itb"
 
-
-## TODO: genimage
+"$HOST_DIR/bin/genimage"  --rootpath "$IMAGES_DIR" --inputpath "$IMAGES_DIR" --outputpath "$IMAGES_DIR" --config "$SCRIPT_DIR/genimage.cfg"
