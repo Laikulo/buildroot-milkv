@@ -17,6 +17,8 @@ if [[ $USE_VENDOR_FIP ]]; then
 	cp "$MILKV_FW_DIR/fip.bin" "$FW_DIR/fip.bin"
 else
 # Not quite sure why the RTOS below is required. IIUC, it should be optional
+## TODO: UBOOT
+## TODO: opensbi
 "$HOST_DIR/bin/cvi-fiptool" \
   --fsbl "$CVI_FW_DIR/fsbl/cv180x.bin" \
   --ddr_param "$CVI_FW_DIR/ddr_param.bin" \
@@ -41,7 +43,7 @@ fi
 
 "$HOST_DIR/bin/lzma" -c -9 -f -k "$KERNEL_PATH" > "$KERNEL_PATH.lzma"
 
-cat >"$IMAGES_DIR/duo-firmware/sd.its" <<-END
+cat >"$IMAGES_DIR/duo-firmware/boot.sd" <<-END
 /dts-v1/;
 
 / {
@@ -89,9 +91,8 @@ cat >"$IMAGES_DIR/duo-firmware/sd.its" <<-END
 };
 END
 
+
 "$HOST_DIR/bin/mkimage" -f "$IMAGES_DIR/duo-firmware/sd.its" "$IMAGES_DIR/duo-firmware/sd.itb"
 
-## TODO: UBOOT
-## TODO: opensbi
 
 ## TODO: genimage
