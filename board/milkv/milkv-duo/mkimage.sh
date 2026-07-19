@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -xe
 
 IMAGES_DIR="$1"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
@@ -46,7 +46,7 @@ fi
 
 "$HOST_DIR/bin/lzma" -c -9 -f -k "$KERNEL_PATH" > "$KERNEL_PATH.lzma"
 
-cat >"$IMAGES_DIR/duo-firmware/boot.sd" <<-END
+cat >"$IMAGES_DIR/duo-firmware/sd.its" <<-END
 /dts-v1/;
 
 / {
@@ -95,6 +95,6 @@ cat >"$IMAGES_DIR/duo-firmware/boot.sd" <<-END
 END
 
 
-"$HOST_DIR/bin/mkimage" -f "$IMAGES_DIR/duo-firmware/sd.its" "$IMAGES_DIR/duo-firmware/sd.itb"
+"$HOST_DIR/bin/mkimage" -f "$IMAGES_DIR/duo-firmware/sd.its" "$IMAGES_DIR/duo-firmware/boot.sd"
 
 "$HOST_DIR/bin/genimage"  --rootpath "$IMAGES_DIR" --inputpath "$IMAGES_DIR" --outputpath "$IMAGES_DIR" --config "$SCRIPT_DIR/genimage.cfg"
