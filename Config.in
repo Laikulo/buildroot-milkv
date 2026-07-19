@@ -9,6 +9,8 @@ source "$BR2_EXTERNAL_MILKV_PATH/package/python-pinpong/Config.in"
 # Packages extracted from SDK
 source "$BR2_EXTERNAL_MILKV_PATH/package/milkvkernel/Config.in"
 source "$BR2_EXTERNAL_MILKV_PATH/package/cvi-fiptool/Config.in"
+source "$BR2_EXTERNAL_MILKV_PATH/package/milkv-boot-blobs/Config.in"
+
 
 # Toolchain from milkv-host-tools
 source "$BR2_EXTERNAL_MILKV_PATH/toolchain/toolchain-external-milkv/Config.in.options"
